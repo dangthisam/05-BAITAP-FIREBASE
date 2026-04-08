@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- THÊM QUYỀN TRUY CẬP INTERNET Ở ĐÂY -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -27,6 +26,7 @@
 
         <activity android:name=".RegisterActivity" android:exported="false" />
         <activity android:name=".MainActivity" android:exported="false" />
+        <activity android:name=".BookingActivity" android:exported="false" />
 
     </application>
 
