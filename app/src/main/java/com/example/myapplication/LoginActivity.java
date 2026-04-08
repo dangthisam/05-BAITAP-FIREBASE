@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.myapplication.util.FirebaseSeed;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
@@ -22,21 +23,20 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Khởi tạo Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
+        // --- KHỞI TẠO DỮ LIỆU MẪU NGAY TẠI ĐÂY ---
+        FirebaseSeed.INSTANCE.initData();
+        // ----------------------------------------
 
-        // Ánh xạ View
+        mAuth = FirebaseAuth.getInstance();
         edtEmail = findViewById(R.id.edtEmailLogin);
         edtPassword = findViewById(R.id.edtPasswordLogin);
         btnLogin = findViewById(R.id.btnLogin);
         tvGoToRegister = findViewById(R.id.tvGoToRegister);
 
-        // Nút chuyển sang màn hình Đăng ký
         tvGoToRegister.setOnClickListener(v -> {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });
 
-        // Xử lý nút Đăng Nhập
         btnLogin.setOnClickListener(v -> loginUser());
     }
 
@@ -49,14 +49,12 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // Gọi hàm đăng nhập của Firebase
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-                        // Chuyển sang màn hình chính (MainActivity)
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish(); // Đóng màn hình đăng nhập
+                        finish();
                     } else {
                         Toast.makeText(LoginActivity.this, "Lỗi đăng nhập: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }

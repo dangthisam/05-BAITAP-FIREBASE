@@ -1,0 +1,6 @@
+# Cấu hình Firebase Data Connect
+schema: "schema"
+connector: "movies"
+project: "movie-ticket-app-c1d24"
+location: "us-central1"
+service: "movie-service"

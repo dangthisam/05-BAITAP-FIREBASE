@@ -1,0 +1,9 @@
+# Định nghĩa Schema cho PostgreSQL (Ví dụ cơ bản)
+type Movie @table(name: "movies") {
+  id: UUID! @default(expr: "uuid_generate_v4()")
+  title: String!
+  genre: String
+  imageUrl: String
+  description: String
+  releaseDate: Date
+}

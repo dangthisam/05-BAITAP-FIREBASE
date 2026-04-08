@@ -1,0 +1,22 @@
+vào# Truy vấn lấy danh sách phim
+query GetMovies @auth(level: PUBLIC) {
+  movies {
+    id
+    title
+    genre
+    imageUrl
+    description
+  }
+}
+
+# Truy vấn lấy chi tiết một bộ phim theo ID
+query GetMovieById($id: UUID!) @auth(level: PUBLIC) {
+  movie(id: $id) {
+    id
+    title
+    genre
+    description
+    imageUrl
+    releaseDate
+  }
+}
